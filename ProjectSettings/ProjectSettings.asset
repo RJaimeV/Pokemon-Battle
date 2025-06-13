@@ -916,7 +916,7 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 2
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Pokemon Battle
+  metroPackageName: PokemonBattle
   metroPackageVersion: 11.2.4.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
