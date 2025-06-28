@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DragapultAttacks
   m_EditorClassIdentifier: 
   attacks:
-  - attacksName: Luz
+  - attackName: SNARL
     minDamage: 50
     maxDamage: 100
     attackTime: 2
@@ -23,7 +23,7 @@ MonoBehaviour:
       type: 3}
     particlesPrefab: {fileID: 1590415177872986601, guid: acdb90624a404aa438447006f1026065,
       type: 3}
-  - attacksName: Luz2
+  - attackName: BITE
     minDamage: 30
     maxDamage: 60
     attackTime: 2
