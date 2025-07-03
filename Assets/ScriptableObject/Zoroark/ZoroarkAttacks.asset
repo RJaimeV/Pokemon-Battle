@@ -18,18 +18,18 @@ MonoBehaviour:
     maxDamage: 100
     attackTime: 2
     animationName: Attack1
-    soundName: Zarude_Attack1
-    hitParticlesPrefabs: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7,
+    soundName: Zoroark_Attack1
+    hitParticlesPrefabs: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd,
       type: 3}
-    particlesPrefab: {fileID: 2353600328335836179, guid: ceec7516237b4104b94300043ca39784,
+    particlesPrefab: {fileID: 3280519133390621005, guid: a71be3e7990efb040a07565c43cbb198,
       type: 3}
-  - attackName: AIR
+  - attackName: OCLUSSION
     minDamage: 30
     maxDamage: 60
     attackTime: 2
     animationName: Attack2
-    soundName: Zarude_Attack2
-    hitParticlesPrefabs: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7,
+    soundName: Zoroark_Attack2
+    hitParticlesPrefabs: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd,
       type: 3}
-    particlesPrefab: {fileID: 2353600328335836179, guid: ceec7516237b4104b94300043ca39784,
+    particlesPrefab: {fileID: 3280519133390621005, guid: a71be3e7990efb040a07565c43cbb198,
       type: 3}

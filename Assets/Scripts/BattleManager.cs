@@ -13,11 +13,16 @@ public class BattleManager : MonoBehaviour
     private UnityEvent _onBattleFinished;
     [SerializeField]
     private UnityEvent _onBattleStarted;
+    [SerializeField]
+    private UnityEvent _FigtherFound;
+    [SerializeField]
+    private UnityEvent _NoFigtherFound;
     private List<Fighter> _fighters = new List<Fighter>();
     private Coroutine _battleCoroutine;
     private DamageTarget _damageTarget = new DamageTarget();
     public void AddFighter(Fighter fighter)
     {
+        _FigtherFound.Invoke();
         MessageFrame.Instance.ShowMessage($"{fighter.Name} has joined the battle!");
         _fighters.Add(fighter);
         CheckFighters();
@@ -29,6 +34,11 @@ public class BattleManager : MonoBehaviour
         {
             StopBattle();
         }
+        if (_fighters.Count < 1)
+        {
+            _NoFigtherFound.Invoke();
+        }
+        
     }
     private void StopBattle()
     {
