@@ -2,9 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
-using Unity.VisualScripting;
-using NUnit.Framework;
-using UnityEditor.VersionControl;
 
 public class BattleManager : MonoBehaviour
 {
@@ -19,46 +16,50 @@ public class BattleManager : MonoBehaviour
     private List<Fighter> _fighters = new List<Fighter>();
     private Coroutine _battleCoroutine;
     private DamageTarget _damageTarget = new DamageTarget();
-
     public void AddFighter(Fighter fighter)
     {
         MessageFrame.Instance.ShowMessage($"{fighter.Name} has joined the battle!");
         _fighters.Add(fighter);
         CheckFighters();
     }
-
     public void RemoveFighter(Fighter fighter)
     {
         _fighters.Remove(fighter);
         if (_fighters.Count < 2)
         {
-            if (_battleCoroutine != null)
+            StopBattle();
+        }
+    }
+    private void StopBattle()
+    {
+        if (_battleCoroutine != null)
             {
                 StopCoroutine(_battleCoroutine);
                 _battleCoroutine = null;
             }
             _onBattleStopped?.Invoke();
-        }
     }
-
     private void CheckFighters()
     {
         if (_fighters.Count < _numberOfFighters)
         {
             return;
         }
+        StopBattle();
+        InitializeFighters();
         _onBattleStarted?.Invoke();
     }
-
-    public void StartBattle()
+    private void InitializeFighters()
     {
         foreach (Fighter fighter in _fighters)
         {
             fighter.InitializeFighter();
         }
+    }
+    public void StartBattle()
+    {
         _battleCoroutine = StartCoroutine(BattleCoroutine());
     }
-
     private IEnumerator BattleCoroutine()
     {
         while (_fighters.Count > 1)
@@ -75,12 +76,12 @@ public class BattleManager : MonoBehaviour
             MessageFrame.Instance.ShowMessage($"{attacker.Name} attacks with {attack.attackName}!");
             SoundManager.instance.Play(attack.soundName);
             attacker.CharacterAnimator.Play(attack.animationName);
-            GameObject attackParticles = Instantiate(attack.particlesPrefab, defender.transform.position, Quaternion.identity);
+            GameObject attackParticles = Instantiate(attack.particlesPrefab, attacker.transform.position, Quaternion.identity);
             attackParticles.transform.SetParent(attacker.transform);
             yield return new WaitForSeconds(attack.attackTime);
             float damage = Random.Range(attack.minDamage, attack.maxDamage);
-            GameObject defenderParticles = Instantiate(attack.hitParticlesPrefabs, defender.transform.position, Quaternion.identity);
-            defenderParticles.transform.SetParent(defender.transform);
+            GameObject defendParticles = Instantiate(attack.hitParticlesPrefabs, defender.transform.position, Quaternion.identity);
+            defendParticles.transform.SetParent(defender.transform);
             _damageTarget.SetDamageTarget(damage, defender.transform);
             defender.Health.TakeDamage(_damageTarget);
             if (defender.Health.CurrentHealth <= 0)
@@ -94,7 +95,7 @@ public class BattleManager : MonoBehaviour
     private void EndBattle(Fighter winner)
     {
         winner.transform.LookAt(Camera.main.transform);
-        MessageFrame.Instance.ShowMessage($"{winner.Name}wins the battle!");
+        MessageFrame.Instance.ShowMessage($"{winner.Name} wins the battle!");
         SoundManager.instance.Play(winner.WinSoundName);
         winner.CharacterAnimator.Play(winner.WinAnimationName);
         _onBattleFinished?.Invoke();

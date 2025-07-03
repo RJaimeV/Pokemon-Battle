@@ -7,8 +7,6 @@ public class MessageFrame : MonoBehaviour
     [SerializeField]
     private Text _text;
     [SerializeField]
-    private Animator _animator;
-    [SerializeField]
     private float _timeBetweenLetters = 0.05f;
     [SerializeField]
     private float _timeToHide = 2f;
@@ -16,12 +14,10 @@ public class MessageFrame : MonoBehaviour
     private string _showAnimationName = "ShowMessageFrame";
     [SerializeField]
     private string _hideAnimationName = "HideMessageFrame";
-
+    private Animator _animator;
     private string _currentText;
     private Coroutine _typingCoroutine;
-
     public static MessageFrame Instance { get; private set; }
-
     private void Awake()
     {
         if (Instance == null)
@@ -32,8 +28,8 @@ public class MessageFrame : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        _animator = GetComponent<Animator>();
     }
-
     public void ShowMessage(string message)
     {
         StopCoroutine();
@@ -41,8 +37,8 @@ public class MessageFrame : MonoBehaviour
         _text.text = "";
         _animator.Play(_showAnimationName, 0, 0f);
         _typingCoroutine = StartCoroutine(TypeMessage());
+        SoundManager.instance.Play("Dialogue");
     }
-
     private IEnumerator TypeMessage()
     {
         for (int i = 0; i < _currentText.Length; i++)
@@ -50,11 +46,9 @@ public class MessageFrame : MonoBehaviour
             _text.text += _currentText[i];
             yield return new WaitForSeconds(_timeBetweenLetters);
         }
-
         yield return new WaitForSeconds(_timeToHide);
         _animator.Play(_hideAnimationName, 0, 0f);
     }
-
     private void StopCoroutine()
     {
         if (_typingCoroutine != null)
