@@ -1,0 +1,10 @@
+# ninja log v5
+23	1578	7733737605633291	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	fbe050be1ced63d2
+29	1635	7733737606214929	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	7b68ca8c9ed05430
+46	1665	7733737606535632	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	7a2f931485202add
+13	1695	7733737606768022	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	e2bf79f7ad071989
+35	1798	7733737607885513	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	ba3ce97877a55aa
+1	1902	7733737608900135	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	344a15515979370b
+17	2111	7733737611046811	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	f8e5b18ae60c1162
+7	2362	7733737613464137	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	c45d061f94822526
+2362	2525	7733737615019311	C:/Users/Equipo 31/Pictures/Pokemon Battle/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/17z2072a/obj/arm64-v8a/libgame.so	25022c8e4fa33cb6
